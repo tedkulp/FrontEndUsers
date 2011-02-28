@@ -61,6 +61,7 @@ $this->SetPreference('hidden_field_marker',trim($params['hidden_field_marker']))
 $this->SetPreference('hidden_field_color',trim($params['hidden_field_color']));
 $this->SetPreference('secure_field_marker',trim($params['secure_field_marker']));
 $this->SetPreference('secure_field_color',trim($params['secure_field_color']));
+$this->SetPreference('pwhashalgo',trim($params['pwhashalgo']));
 
 $this->SetPreference('thumbnail_size',(int)$params['thumbnail_size']);
 $this->SetPreference('pageidforgotpasswd',trim($params['pageidforgotpasswd']));
