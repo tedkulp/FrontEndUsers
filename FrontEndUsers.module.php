@@ -145,7 +145,7 @@ class FrontEndUsers extends CGExtensions
    ---------------------------------------------------------*/
   function GetVersion()	
   {
-    return '1.12.12';
+    return '1.12.13';
   }
 
  
@@ -1326,9 +1326,9 @@ EOT;
 	$expires = time()+(3600*24*365);
 	$val = array();
 	$val['u'] = $username;
-	$val['p'] = md5($password);
+	$val['p'] = $this->HashPassword($password);
 	$str = serialize( $val );
-	$key = 'FEU'.md5($config['root_path']).md5($cookiename);
+	$key = 'FEU'.$this->HashPassword($config['root_path']).$this->HashPassword($cookiename);
 	$str = $this->_encrypt($key,$str);
 	if( $str !== FALSE )
 	  {
@@ -1414,6 +1414,12 @@ EOT;
   //////////////////////////////////////////
   //  API FUNCTIONS //
   //////////////////////////////////////////
+
+  function HashPassword( $text )
+  {
+    $this->_load();
+    return $this->usermanip->HashPassword( $text );
+  }
 
   function AddGroup( $name, $description )
   {

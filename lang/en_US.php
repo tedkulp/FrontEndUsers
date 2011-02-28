@@ -542,6 +542,7 @@ $lang['defaultfrontpage'] = "Default front page";
 $lang['lastaccessedpage'] = 'Last accessed page';
 $lang['otherpage'] = 'Other page: ';
 $lang['captcha_title'] = 'Enter the text from the image';
+$lang['prompt_pwhashalgo'] = 'Password hashing algorithm';
 $lang['help'] = <<<EOF
 <h3>What Does This Do?</h3>
 <p>This module allows management and administration of front end users <i>(users who have no admin accesss)</i>.  It allows creation of user groups, and user accounts and allows users to login and logout.  it can be used in conjunction with the CustomContent module to display different content to different users once they have logged in</p>

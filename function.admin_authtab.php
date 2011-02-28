@@ -49,6 +49,7 @@ $smarty->assign('maxpwlen',$this->GetPreference('max_passwordlength'));
 $smarty->assign('unfldlen',$this->GetPreference('usernamefldlength'));
 $smarty->assign('minunlen',$this->GetPreference('min_usernamelength'));
 $smarty->assign('maxunlen',$this->GetPreference('max_usernamelength'));
+$smarty->assign('pwhashalgo',$this->GetPreference('pwhashalgo'));
 $smarty->assign('cookie_keepalive',$this->GetPreference('cookie_keepalive',0));
 $smarty->assign('usecookiestoremember',$this->GetPreference('usecookiestoremember'));
 $smarty->assign('cookiename',$this->GetPreference('cookiename'));
@@ -72,6 +73,11 @@ $smarty->assign('pageid_login',$this->GetPreference('pageid_login'));
 $smarty->assign('pageid_logout',$this->GetPreference('pageid_logout'));
 $smarty->assign('pageid_afterverify',$this->GetPreference('pageid_afterverify'));
 $smarty->assign('pageid_afterchangesettings',$this->GetPreference('pageid_afterchangesettings'));
+
+$algos = array( 'md5' => 'md5', 'sha256' => 'sha256' );
+$smarty->assign('input_pwhashalgo',
+		$this->CreateInputDropDown( $id, 'pwhashalgo', $algos, -1,
+					    $this->GetPreference('pwhashalgo')));
 
 $cgecom = cge_utils::get_module('CGEcommerceBase');
 $selfreg = cge_utils::get_module('SelfRegistration');

@@ -332,6 +332,12 @@ switch( $oldversion )
       $this->RemoveEventHandler('Core','ModuleInstalled');
       $this->RemoveEventHandler('Core','ModuleUninstalled');
     }
+  case '1.12.12':
+    {
+      $dict = NewDataDictionary($db);
+      $sqlarray = $dict->AlterColumnSQL(cms_db_prefix().'module_feusers_users', "password C(255)");
+      $dict->ExecuteSQLArray( $sqlarray );
+    }
   } // switch
 ?>
 

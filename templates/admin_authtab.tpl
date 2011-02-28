@@ -41,6 +41,12 @@
   </p>
 </div>
 <div class="pageoverflow">
+  <p class="pagetext">{$mod->Lang('prompt_pwhashalgo')}:</p>
+  <p class="pageinput">
+   {$input_pwhashalgo}
+  </p>
+</div>
+<div class="pageoverflow">
   <p class="pagetext">{$mod->Lang('prompt_unfldlen')}:</p>
   <p class="pageinput">
    <input type="text" name="{$actionid}unfldlen" value="{$unfldlen}" size="2" maxlength="2"/>
