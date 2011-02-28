@@ -46,7 +46,7 @@ if( !isset($gCms) ) exit;
     $flds = "
              id I KEY,
 	     username C(80) NOT NULL,
-             password C(32) NOT NULL,
+             password C(255) NOT NULL,
              createdate ".CMS_ADODB_DT.",
              expires ".CMS_ADODB_DT;
 
