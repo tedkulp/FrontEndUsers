@@ -145,7 +145,7 @@ class FrontEndUsers extends CGExtensions
    ---------------------------------------------------------*/
   function GetVersion()	
   {
-    return '1.12.12';
+    return '1.12.13';
   }
 
  
