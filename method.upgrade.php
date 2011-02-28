@@ -332,6 +332,15 @@ switch( $oldversion )
       $this->RemoveEventHandler('Core','ModuleInstalled');
       $this->RemoveEventHandler('Core','ModuleUninstalled');
     }
+  case '1.12.3':
+  case '1.12.4':
+  case '1.12.5':
+  case '1.12.6':
+  case '1.12.7':
+  case '1.12.8':
+  case '1.12.9':
+  case '1.12.10':
+  case '1.12.11':
   case '1.12.12':
     {
       $dict = NewDataDictionary($db);
