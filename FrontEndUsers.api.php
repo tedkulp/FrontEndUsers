@@ -2219,7 +2219,15 @@ class FrontEndUsersManipulator extends UserManipulator
 
   function HashPassword($text)
   {
-	  return md5($text);
+    $feu = cge_utils::get_module('FrontEndUsers');
+	switch ($feu->GetPreference('pwhashalgo', 'md5'))
+	{
+	  case 'sha256':
+	    return base64_encode(hash('sha256', $text, true));
+	  case 'md5':
+	  default:
+	    return md5($text);
+	}
   }
 
 } // class
