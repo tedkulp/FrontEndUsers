@@ -129,6 +129,7 @@ class feu_user_query
     $qparms = array();
     $joins  = array();
     $jcount = 0;
+	$feu = cge_utils::get_module('FrontEndUsers');
     foreach( $this->_and_opts as &$opt )
     {
       switch( $opt->get_type() )
@@ -140,7 +141,7 @@ class feu_user_query
 
 	case feu_user_query_opt::MATCH_PASSWORD:
 	  $where[]  = 'u.password = ?';
-	  $qparms[] = md5($opt->get_expr());
+	  $qparms[] = $feu->HashPassword($opt->get_expr());
 	  break;
 	  
 	case feu_user_query_opt::MATCH_EXPIRES_LT:

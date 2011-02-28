@@ -65,7 +65,7 @@ class FrontEndUsersManipulator extends UserManipulator
 						return FALSE;
 					}
 
-				$key = md5($gCms->config['root_url'].$uid.$res[1]['createdate']);
+				$key = $this->HashPassword($gCms->config['root_url'].$uid.$res[1]['createdate']);
 				$this->_encryption_key = $key;
 
 				return TRUE;
@@ -84,7 +84,7 @@ class FrontEndUsersManipulator extends UserManipulator
 						return FALSE;
 					}
 
-				$key = md5($gCms->config['root_url'].$uid.$res[1]['createdate']);
+				$key = $this->HashPassword($gCms->config['root_url'].$uid.$res[1]['createdate']);
 				$this->_encryption_key = $key;
 				return TRUE;
 			}
@@ -1211,7 +1211,7 @@ class FrontEndUsersManipulator extends UserManipulator
     $db = $this->GetDb();
     $q = "UPDATE ".cms_db_prefix()."module_feusers_users
           SET password = ? WHERE id = ?";
-    $dbresult = $db->Execute( $q, array( md5($password), $uid ));
+    $dbresult = $db->Execute( $q, array( $this->HashPassword($password), $uid ));
     if( !$dbresult )
       {
 				return array(FALSE,$db->ErrorMsg());
@@ -1254,7 +1254,7 @@ class FrontEndUsersManipulator extends UserManipulator
 				$q .= ", password = ?";
 				if( $do_md5 )
 					{
-						$parms[] = md5($password);
+						$parms[] = $this->HashPassword($password);
 					}
 				else
 					{
@@ -1582,7 +1582,7 @@ class FrontEndUsersManipulator extends UserManipulator
 			}
 		else
 			{
-				$p=array($username,md5(trim($password)));
+				$p=array($username,$this->HashPassword(trim($password)));
 			}
 		if ($groups != '')
 			{			
@@ -1800,7 +1800,7 @@ class FrontEndUsersManipulator extends UserManipulator
 				$str = $_COOKIE[$cookiename];
 				$origstr = $str;
 				$str = base64_decode($str);
-				$key = 'FEU'.md5($config['root_path']).md5($cookiename);
+				$key = 'FEU'.$this->HashPassword($config['root_path']).$this->HashPassword($cookiename);
 				$str = $module->_decrypt($key,$str);
 				if( $str === FALSE )
 					{
@@ -2040,7 +2040,7 @@ class FrontEndUsersManipulator extends UserManipulator
 		$pwtxt = $password;
 		if( $do_md5 == true )
 			{
-				$pwtxt = md5($password);
+				$pwtxt = $this->HashPassword($password);
 			}
 
     // insert the record
@@ -2215,6 +2215,11 @@ class FrontEndUsersManipulator extends UserManipulator
 			{
 				unset($this->_cached_uid_map[$userid]);
 			}
+  }
+
+  function HashPassword($text)
+  {
+	  return md5($text);
   }
 
 } // class
